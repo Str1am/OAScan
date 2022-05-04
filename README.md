@@ -19,6 +19,13 @@
 
 <img width="948" alt="image" src="https://user-images.githubusercontent.com/48739932/166615366-6b172b90-b572-4778-a31c-22541caaf705.png">
 
+在目录新建一个txt文件，传入url
+
+-f指定即可
+
+<img width="958" alt="image" src="https://user-images.githubusercontent.com/48739932/166616133-7752cf57-3402-408a-a59f-71f1e8665458.png">
+
+
 
 由于代码设计原因，-m参数为poc中第一个_前的字符，指定单个poc即输入poc名称即可
 
