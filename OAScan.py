@@ -1,9 +1,12 @@
 import httpx
 from lib import cmdLine,getModule,Banner,Option
 import importlib
+import os
 import threading,time
 def run():
-    module_path = "Script"
+    path = os.path.dirname(__file__)
+    Script_path = "Script"
+    module_path = path + "/"+ Script_path
     module_list = getModule.get_module(module_path) #获取payload
     module_list = [m.strip() for m in module_list if m.strip() != '']   ##去除可能导致module为空，导致导入包错误的情况
 
@@ -17,8 +20,9 @@ def run():
     for module in module_list:
         #指定单个module运行，注意根据poc命名的第一个下划线前面的名称即可
         if single_module !='None' and single_module in module:
-            new_module = module_path + '.' + module
+            new_module = Script_path + '.' + module
             print("当前加载的module：" + new_module)
+
             module_object_m = importlib.import_module(new_module)         #动态注册模块
             for target in path:
                 t = threading.Thread(target=module_object_m.poc, args=(target,))
@@ -27,7 +31,7 @@ def run():
 
         #不指定module运行
         if single_module == 'None':
-            new_module = module_path + '.' + module
+            new_module = Script_path + '.' + module
             print("当前加载的module：" + new_module)
             module_object = importlib.import_module(new_module)         #动态注册模块
             for target in path:
