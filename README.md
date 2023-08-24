@@ -2,17 +2,61 @@
 
 一款用来扫描oa的漏洞的工具
 
-## 0807
-根据某次hw，更新了部分代码，还是主要以检测为主，不涉及具体攻击行为
+## 23-8-24
+根据hw添加了部分poc
+目前支持的poc
 
-新增致远，泛微，帆软的部分poc
+### 0x01：致远
+1. 致远A6用户信息泄露<br>
+2. ajax.do文件上传<br>
+3. createMysql.jsp 数据库敏感信息泄露<br>
+4. initDataAssess.jsp 用户敏感信息泄露<br>
+5. 致远登录绕过<br>
+6. m1 server命令执行<br>
+7. A8 状态监控页面信息泄露<br>
+8. /seeyon/htmlofficeservlet文件上传<br>
+9. getSessionList.jsp Session泄漏漏洞<br>
+10. A6 test.jsp SQL注入漏洞<br>
+11. /seeyon/wpsAssistServlet文件上传<br>
+12. webmail.do任意文件下载<br>
 
 
-## 0622
+### 0x02：泛微
+1. 泛微云桥 e-Bridge 任意文件读取<br>
+2. BshServlet命令执行漏洞<br>
+3. 数据库配置信息泄漏漏洞<br>
+4. getSqlData注入<br>
+5. uploadOperation.jsp文件上传<br>
+6. ln.FileDownload任意文件下载<br>
+7. getdata.jsp注入<br>
+8. LoginSSO.jsp注入<br>
+9. /OfficeServer上传<br>
+10. WorkflowServiceXml注入<br>
+ 
+### 0x03：通达
+1. ispirit/login_code.php存在通达任意用户登录<br>
+2. logincheck_code.php存在通达任意用户登录<br>
+3. im/upload.php任意文件上传<br>
 
-更新部分poc，新增部分用友，致远的poc
+### 0x04：用友
+1. bsh.servlet.BshServlet 远程命令执行
+2. 数据库读取
+3. ELTextFile.load.d文件读取
+4. NCFindWeb目录遍历
+5. soapFormat.ajax xxe
+6. com.ufida.web.action.ActionServlet未授权
+7. jsinvoke文件上传（状态码判断，未直接上传文件）
 
 ## 使用介绍
+
+mac用户可以添加命令到zshrc中
+
+<img width="700" alt="image" src="https://github.com/Str1am/OAScan/assets/48739932/d5702204-0e72-4633-9034-921aeb63f699">
+
+方便快速扫描
+
+<img width="1067" alt="image" src="https://github.com/Str1am/OAScan/assets/48739932/69caf8d6-8f1a-4a9b-a5b8-1daad25391ea">
+
 
 目前支持-u -m -f三种参数
 
@@ -20,12 +64,12 @@
 
 <img width="1023" alt="image" src="https://user-images.githubusercontent.com/48739932/166615230-cf05ddfa-4922-4532-9952-18666da604b0.png">
 
-为了方便测试，加入了-m参数用于指定oa系统进行扫描
+-m参数用于指定oa系统进行扫描
 
 <img width="955" alt="image" src="https://user-images.githubusercontent.com/48739932/166615278-22accb23-33ad-4b4e-9b7d-7e56d729736b.png">
 
 
-当然也能指定单个poc进行扫描
+指定单个poc进行扫描
 
 <img width="948" alt="image" src="https://user-images.githubusercontent.com/48739932/166615366-6b172b90-b572-4778-a31c-22541caaf705.png">
 
